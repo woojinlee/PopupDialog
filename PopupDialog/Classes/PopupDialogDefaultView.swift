@@ -77,6 +77,10 @@ final public class PopupDialogDefaultView: UIView {
         get { return imageHeightConstraint?.constant ?? 0 }
         set { imageHeightConstraint?.constant = newValue }
     }
+    
+    @objc public dynamic var horizontalMargin: CGFloat = 16
+    @objc public dynamic var verticalMargin: CGFloat = 24
+    @objc public dynamic var spacing: CGFloat = 8
 
     // MARK: - Views
 
@@ -142,9 +146,9 @@ final public class PopupDialogDefaultView: UIView {
         var constraints = [NSLayoutConstraint]()
 
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==20@900)-[titleLabel]-(==20@900)-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==20@900)-[messageLabel]-(==20@900)-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]-(==30@900)-[titleLabel]-(==8@900)-[messageLabel]-(==30@900)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==\(horizontalMargin)@900)-[titleLabel]-(==\(horizontalMargin)@900)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==\(horizontalMargin)@900)-[messageLabel]-(==\(horizontalMargin)@900)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]-(==\(verticalMargin)@900)-[titleLabel]-(==\(spacing)@900)-[messageLabel]-(==\(verticalMargin)@900)-|", options: [], metrics: nil, views: views)
         
         // ImageView height constraint
         imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .height, multiplier: 0, constant: 220)
