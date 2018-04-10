@@ -78,9 +78,21 @@ final public class PopupDialogDefaultView: UIView {
         set { imageHeightConstraint?.constant = newValue }
     }
     
-    @objc public dynamic var horizontalMargin: CGFloat = 16
-    @objc public dynamic var verticalMargin: CGFloat = 24
-    @objc public dynamic var spacing: CGFloat = 8
+    @objc public dynamic var horizontalMargin: CGFloat = 16 {
+        didSet {
+            resetViews()
+        }
+    }
+    @objc public dynamic var verticalMargin: CGFloat = 50 {
+        didSet {
+            resetViews()
+        }
+    }
+    @objc public dynamic var spacing: CGFloat = 8 {
+        didSet {
+            resetViews()
+        }
+    }
 
     // MARK: - Views
 
@@ -117,6 +129,7 @@ final public class PopupDialogDefaultView: UIView {
     
     /// The height constraint of the image view, 0 by default
     internal var imageHeightConstraint: NSLayoutConstraint?
+    internal var defaultConstraints = [NSLayoutConstraint]()
 
     // MARK: - Initializers
 
@@ -142,19 +155,27 @@ final public class PopupDialogDefaultView: UIView {
         addSubview(messageLabel)
 
         // Layout views
+        layoutViews()
+    }
+    
+    internal func layoutViews() {
         let views = ["imageView": imageView, "titleLabel": titleLabel, "messageLabel": messageLabel] as [String : Any]
-        var constraints = [NSLayoutConstraint]()
-
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==\(horizontalMargin)@900)-[titleLabel]-(==\(horizontalMargin)@900)-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==\(horizontalMargin)@900)-[messageLabel]-(==\(horizontalMargin)@900)-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]-(==\(verticalMargin)@900)-[titleLabel]-(==\(spacing)@900)-[messageLabel]-(==\(verticalMargin)@900)-|", options: [], metrics: nil, views: views)
+        defaultConstraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: views)
+        defaultConstraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==\(horizontalMargin)@900)-[titleLabel]-(==\(horizontalMargin)@900)-|", options: [], metrics: nil, views: views)
+        defaultConstraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==\(horizontalMargin)@900)-[messageLabel]-(==\(horizontalMargin)@900)-|", options: [], metrics: nil, views: views)
+        defaultConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]-(==\(verticalMargin)@900)-[titleLabel]-(==\(spacing)@900)-[messageLabel]-(==\(verticalMargin)@900)-|", options: [], metrics: nil, views: views)
         
         // ImageView height constraint
         imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .height, multiplier: 0, constant: 220)
-        constraints.append(imageHeightConstraint!)
-
+        defaultConstraints.append(imageHeightConstraint!)
+        
         // Activate constraints
-        NSLayoutConstraint.activate(constraints)
+        NSLayoutConstraint.activate(defaultConstraints)
+    }
+    
+    internal func resetViews() {
+        NSLayoutConstraint.deactivate(defaultConstraints)
+        defaultConstraints.removeAll()
+        layoutViews()
     }
 }
