@@ -51,6 +51,7 @@ public extension PopupDialogDefaultViewController {
                 standardView.imageView.contentMode = standardView.imageHeight > max(size.width, size.height)
                     ? .center
                     : .scaleAspectFill
+                standardView.imageHeightConstraint?.constant = standardView.imageHeight
             }
         }
     }
