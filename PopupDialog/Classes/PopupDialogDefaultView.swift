@@ -66,6 +66,12 @@ final public class PopupDialogDefaultView: UIView {
         get { return messageLabel.textAlignment }
         set { messageLabel.textAlignment = newValue }
     }
+    
+    /// The content mode of image view
+    @objc public dynamic var imageContentMode: UIViewContentMode {
+        get { return imageView.contentMode }
+        set { imageView.contentMode = newValue }
+    }
 
     // MARK: - Views
 
