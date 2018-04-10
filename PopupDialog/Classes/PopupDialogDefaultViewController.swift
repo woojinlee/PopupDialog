@@ -26,8 +26,6 @@
 import UIKit
 
 final public class PopupDialogDefaultViewController: UIViewController {
-    internal let imageHeight: CGFloat = 220
-
     public var standardView: PopupDialogDefaultView {
        return view as! PopupDialogDefaultView
     }
@@ -49,7 +47,6 @@ public extension PopupDialogDefaultViewController {
         get { return standardView.imageView.image }
         set {
             standardView.imageView.image = newValue
-            standardView.imageHeightConstraint?.constant = imageHeight
         }
     }
 
@@ -127,8 +124,4 @@ public extension PopupDialogDefaultViewController {
         }
     }
     
-    public override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        standardView.imageHeightConstraint?.constant = imageHeight
-    }
 }

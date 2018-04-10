@@ -72,6 +72,11 @@ final public class PopupDialogDefaultView: UIView {
         get { return imageView.contentMode }
         set { imageView.contentMode = newValue }
     }
+    
+    @objc public dynamic var imageHeight: CGFloat {
+        get { return imageHeightConstraint?.constant ?? 0 }
+        set { imageHeightConstraint?.constant = newValue }
+    }
 
     // MARK: - Views
 
@@ -142,7 +147,7 @@ final public class PopupDialogDefaultView: UIView {
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]-(==30@900)-[titleLabel]-(==8@900)-[messageLabel]-(==30@900)-|", options: [], metrics: nil, views: views)
         
         // ImageView height constraint
-        imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .height, multiplier: 0, constant: 0)
+        imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .height, multiplier: 0, constant: 220)
         constraints.append(imageHeightConstraint!)
 
         // Activate constraints
