@@ -48,7 +48,7 @@ public extension PopupDialogDefaultViewController {
         set {
             standardView.imageView.image = newValue
             if let size = newValue?.size {
-                standardView.imageView.contentMode = standardView.imageHeight < max(size.width, size.height)
+                standardView.imageView.contentMode = standardView.imageHeight > max(size.width, size.height)
                     ? .center
                     : .scaleAspectFill
             }
