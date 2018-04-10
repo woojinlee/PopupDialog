@@ -83,7 +83,7 @@ final public class PopupDialogDefaultView: UIView {
             resetViews()
         }
     }
-    @objc public dynamic var verticalMargin: CGFloat = 50 {
+    @objc public dynamic var verticalMargin: CGFloat = 24 {
         didSet {
             resetViews()
         }
