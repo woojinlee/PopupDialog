@@ -191,14 +191,14 @@ final public class PopupDialog: UIViewController {
 
         guard !initialized else { return }
         appendButtons()
-        addObservers()
+//        addObservers()
         initialized = true
     }
 
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        removeObservers()
-    }
+//    public override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        removeObservers()
+//    }
 
     deinit {
         completion?()
