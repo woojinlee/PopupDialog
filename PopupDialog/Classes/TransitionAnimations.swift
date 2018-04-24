@@ -133,7 +133,7 @@ final internal class ZoomTransition: TransitionAnimator {
 final internal class FadeTransition: TransitionAnimator {
 
     init(direction: AnimationDirection) {
-        super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
+        super.init(inDuration: 0.2, outDuration: 0.2, direction: direction)
     }
 
     override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -141,8 +141,9 @@ final internal class FadeTransition: TransitionAnimator {
 
         switch direction {
         case .in:
+            
             to.view.alpha = 0
-            UIView.animate(withDuration: 0.6, delay: 0.0, options: [.curveEaseOut],
+            UIView.animate(withDuration: inDuration, delay: 0.0, options: [.curveEaseOut],
             animations: {
                 self.to.view.alpha = 1
             }) { (completed) in
