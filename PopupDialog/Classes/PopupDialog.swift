@@ -219,9 +219,8 @@ final public class PopupDialog: UIViewController {
      Dismisses the popup dialog
      */
     public func dismiss(_ completion: (() -> Void)? = nil) {
-        self.dismiss(animated: true) {
-            completion?()
-        }
+        self.dismiss(animated: true, completion: nil)
+        completion?()
     }
 
     // MARK: - Button related
