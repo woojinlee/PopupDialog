@@ -196,8 +196,6 @@ final public class PopupDialog: UIViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        addObservers()
-
         guard !initialized else { return }
         appendButtons()
         initialized = true
@@ -211,12 +209,7 @@ final public class PopupDialog: UIViewController {
             self.setNeedsStatusBarAppearanceUpdate()
         }
     }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        removeObservers()
-    }
-
+    
     deinit {
         completion?()
         completion = nil
@@ -236,9 +229,8 @@ final public class PopupDialog: UIViewController {
      Dismisses the popup dialog
      */
     @objc public func dismiss(_ completion: (() -> Void)? = nil) {
-        self.dismiss(animated: true) {
-            completion?()
-        }
+        self.dismiss(animated: true, completion: nil)
+        completion?()
     }
 
     // MARK: - Button related
