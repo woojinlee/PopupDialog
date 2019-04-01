@@ -54,7 +54,7 @@ final internal class BounceUpTransition: TransitionAnimator {
         switch direction {
         case .in:
             to.view.bounds.origin = CGPoint(x: 0, y: -from.view.bounds.size.height)
-            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
+            UIView.animate(withDuration: inDuration, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
                 guard let self = self else { return }
                 self.to.view.bounds = self.from.view.bounds
             }, completion: { _ in
