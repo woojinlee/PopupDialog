@@ -96,7 +96,7 @@ final public class PopupDialog: UIViewController {
                 image: UIImage? = nil,
                 buttonAlignment: NSLayoutConstraint.Axis = .vertical,
                 transitionStyle: PopupDialogTransitionStyle = .bounceUp,
-                preferredWidth: CGFloat = 340,
+                preferredWidth: CGFloat = 280,
                 tapGestureDismissal: Bool = true,
                 panGestureDismissal: Bool = true,
                 hideStatusBar: Bool = false,
